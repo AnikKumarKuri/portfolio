@@ -15,8 +15,10 @@
       text-align: center;
     }
 
-    nav {
+    .nav-bar {
+      
       background-color: #333;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1)
       padding: 0.5em 1em;
       display: flex;
       align-items: center;
@@ -70,7 +72,7 @@
 </head>
 <body>
 
-  <nav>
+  <nav class="nav-bar">
     <div class="logo-nickname">
       <img src="https://static.vecteezy.com/system/resources/previews/006/258/822/non_2x/initial-letter-a-arrow-up-logo-symbol-good-for-company-travel-start-up-logistic-and-graph-logos-vector.jpg" alt="Logo" class="logo" />
       <span>Captain Jack</span>  
