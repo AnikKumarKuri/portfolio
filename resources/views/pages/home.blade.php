@@ -1,12 +1,13 @@
 @extends('layouts.main')
 @section('content')
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
-
+  
   <style>
     /* Reset default styles */
     * {
@@ -63,15 +64,17 @@
     .cover-photo {
       margin-top: 70px; /* space for navbar */
       width: 100%;
-      height: 300px;
+      height: 250px;
       overflow: hidden;
       position: relative;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
     }
 
     .cover-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      
     }
 
     /* Profile Picture Section */
@@ -88,7 +91,7 @@
       border-radius: 50%;
       border: 5px solid white;
       object-fit: cover;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
     }
 
     /* Divider Bar */
@@ -172,10 +175,10 @@
   <!-- Content -->
   <main class="content">
     <h1>Welcome to My Portfolio</h1>
-    <p>Hello I'm </p>
+    <p>Hello I'm Anik </p>
   </main>
 </body>
-</html>
+</html> */
 
 
 @endsection
