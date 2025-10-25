@@ -4,96 +4,178 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio with Logo and Nickname</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    /* Reset default styles */
+    * {
       margin: 0;
       padding: 0;
-      background: #f4f4f4;
-      text-align: center;
+      box-sizing: border-box;
     }
 
-    .nav-bar {
-      
-      background-color: #333;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1)
-      padding: 0.5em 1em;
+    /* Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 70px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 40px;
+      z-index: 100;
     }
 
-    
-    .logo-nickname {
+    .nav-left {
       display: flex;
       align-items: center;
-      gap: 10px; 
-      color: white;
-      font-weight: bold;
-      font-size: 1.2em;
     }
 
-    nav .logo {
-      height: 40px;
-      display: block;
+    .logo {
+      height: 45px;
+      width: 45px;
+      border-radius: 50%;
+      margin-right: 10px;
     }
 
-    nav .nav-links {
-      display: flex;
-      gap: 20px;
+    .name {
+      font-size: 1.5rem;
+      font-weight: 600;
     }
 
-    nav a {
+    .nav-right a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1em;
-      transition: color 0.3s ease;
+      margin-left: 25px;
+      font-size: 1rem;
+      transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: #ff9800;
+    .nav-right a:hover {
+      color: #00c6ff;
     }
 
-    section.profile {
-      margin-top: 40px;
+    /* Cover Section */
+    .cover-photo {
+      margin-top: 70px; /* space for navbar */
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
     }
 
-    section.profile img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 4px solid #333;
+    .cover-image {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+    }
+
+    /* Profile Picture Section */
+    .profile-section {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: -80px; /* overlap on cover */
+    }
+
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 5px solid white;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    /* Divider Bar */
+    .divider-bar {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      position: relative;
+      top: -60px;
+    }
+
+    /* Main Content */
+    .content {
+      text-align: center;
+      padding: 60px 20px;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+    }
+
+    .content h1 {
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 20px;
+      }
+
+      .nav-right {
+        margin-top: 10px;
+      }
+
+      .nav-right a {
+        margin: 0 10px;
+      }
+
+      .profile-pic {
+        width: 120px;
+        height: 120px;
+      }
     }
   </style>
 </head>
 <body>
-
-  <nav class="nav-bar">
-    <div class="logo-nickname">
-      <img src="https://static.vecteezy.com/system/resources/previews/006/258/822/non_2x/initial-letter-a-arrow-up-logo-symbol-good-for-company-travel-start-up-logistic-and-graph-logos-vector.jpg" alt="Logo" class="logo" />
-      <span>Captain Jack</span>  
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-left">
+      <img src="https://static.vecteezy.com/system/resources/previews/005/039/663/non_2x/ak-a-k-letter-logo-design-with-a-creative-cut-vector.jpg" alt="Logo" class="logo" />
+      <span class="name">Anik Kumar Kuri</span>
     </div>
-
-    <div class="nav-links">
+    <nav class="nav-right">
       <a href="#home">Home</a>
       <a href="#skills">Skills</a>
+      <a href="#academic">Academic BG</a>
       <a href="#contact">Contact</a>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <section class="profile" id="home">
-    <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSQXhsHLb9Mk-anqcsirLcwMxjRjtEYYSn6itlBgmos4W-ExTiF2fC4SYvd1FSwiXEZusTPDpvMaYvzi-elb7JumAA2xHUpkNkDs-j36A" alt="Profile Picture" />
-    <h2>Your Name</h2>
-    <p>Welcome to my portfolio!. A movie lover. Big fan of jonny depp</p>
+  <!-- Cover Section -->
+  <section class="cover-photo">
+    <img src="https://static0.srcdn.com/wordpress/wp-content/uploads/2023/10/demon-slayer-s-zenitsu.jpg" alt="Cover Photo" class="cover-image" />
   </section>
 
+  <!-- Profile Section -->
+  <section class="profile-section">
+    <img src="https://avatars.githubusercontent.com/u/232799374?s=400&u=69c8a32b05e551ede9a3031f344781c9b48fd5f5&v=4" alt="Profile Picture" class="profile-pic" />
+  </section>
+
+  <!-- Divider Bar -->
+  <div class="divider-bar"></div>
+
+  <!-- Content -->
+  <main class="content">
+    <h1>Welcome to My Portfolio</h1>
+    <p>Hello I'm </p>
+  </main>
 </body>
 </html>
-
 
 
 @endsection
