@@ -60,23 +60,41 @@
 <section id="projects" class="max-w-6xl mx-auto px-4 py-16">
     <h2 class="text-3xl font-bold mb-8">Projects</h2>
 
-    <div class="grid md:grid-cols-3 gap-6">
-        {{-- Placeholder cards (later dynamic) --}}
-        @for ($i=1; $i<=3; $i++)
-            <div class="rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:scale-[1.02] transition">
-                <div class="h-40 bg-gradient-to-r from-indigo-500 to-pink-500"></div>
-                <div class="p-5">
-                    <h3 class="font-bold text-xl">Project {{ $i }}</h3>
-                    <p class="text-gray-400 mt-2">
-                        Small description about your project goes here.
-                    </p>
-                    <a class="inline-block mt-4 text-indigo-400 hover:underline" href="#">
-                        View Details →
-                    </a>
+   <div class="grid md:grid-cols-3 gap-6">
+    @forelse($projects as $project)
+        <div class="rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:scale-[1.02] transition">
+            <div class="h-40 bg-gradient-to-r from-indigo-500 to-pink-500">
+                @if($project->image)
+                    <img src="{{ asset('storage/'.$project->image) }}"
+                         class="w-full h-full object-cover" alt="">
+                @endif
+            </div>
+
+            <div class="p-5">
+                <h3 class="font-bold text-xl">{{ $project->title }}</h3>
+                <p class="text-gray-400 mt-2 line-clamp-3">
+                    {{ $project->description }}
+                </p>
+
+                <div class="mt-4 flex gap-3 text-sm">
+                    @if($project->live_link)
+                        <a target="_blank" class="text-indigo-400 hover:underline" href="{{ $project->live_link }}">
+                            Live Demo
+                        </a>
+                    @endif
+                    @if($project->github_link)
+                        <a target="_blank" class="text-indigo-400 hover:underline" href="{{ $project->github_link }}">
+                            GitHub
+                        </a>
+                    @endif
                 </div>
             </div>
-        @endfor
-    </div>
+        </div>
+    @empty
+        <p class="text-gray-400">No projects added yet.</p>
+    @endforelse
+</div>
+
 </section>
 
 {{-- CONTACT --}}
