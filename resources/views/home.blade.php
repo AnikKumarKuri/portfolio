@@ -26,13 +26,16 @@
         </div>
     </div>
 
-    <div class="flex-1 flex justify-center">
-        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 p-1">
-            <div class="w-full h-full rounded-full bg-gray-900 flex items-center justify-center text-6xl">
-                👨‍💻
-            </div>
-        </div>
+   <div class="flex-1 flex justify-center">
+    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 p-1">
+        <img 
+            src="{{ asset('image/profile.jpg') }}" 
+            alt="Anik Kumar"
+            class="w-full h-full rounded-full object-cover bg-gray-900"
+        >
     </div>
+</div>
+
 </section>
 
 {{-- ABOUT --}}
