@@ -11,8 +11,23 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.profile.update') }}" method="POST" class="space-y-5">
+    <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
         @csrf
+
+        <!-- PROFILE IMAGE -->
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+            <label class="block text-sm text-gray-300 mb-2">Profile Picture</label>
+
+            @if($profile->profile_image)
+                <img src="{{ asset('storage/'.$profile->profile_image) }}"
+                     class="w-28 h-28 rounded-full object-cover border border-white/10 mb-3">
+            @else
+                <p class="text-xs text-gray-400 mb-3">No image uploaded yet.</p>
+            @endif
+
+            <input type="file" name="profile_image"
+                   class="w-full p-3 rounded-lg bg-white/5 border border-white/10">
+        </div>
 
         <div>
             <label class="block text-sm text-gray-300 mb-1">Name</label>

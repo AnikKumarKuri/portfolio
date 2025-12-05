@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     public function edit()
     {
-        // Always keep only one profile record
         $profile = Profile::first() ?? Profile::create([]);
         return view('admin.profile.edit', compact('profile'));
     }
@@ -32,9 +32,25 @@ class ProfileController extends Controller
             'linkedin' => 'nullable|url',
             'facebook' => 'nullable|url',
             'twitter' => 'nullable|url',
+
+            // new validation for image
+            'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $profile->update($request->all());
+        $data = $request->except('profile_image');
+
+        // handle image upload
+        if ($request->hasFile('profile_image')) {
+
+            // delete old image if exists
+            if ($profile->profile_image && Storage::disk('public')->exists($profile->profile_image)) {
+                Storage::disk('public')->delete($profile->profile_image);
+            }
+
+            $data['profile_image'] = $request->file('profile_image')->store('profile', 'public');
+        }
+
+        $profile->update($data);
 
         return redirect()->back()->with('success', 'Profile updated!');
     }

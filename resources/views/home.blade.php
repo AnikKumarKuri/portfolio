@@ -81,9 +81,10 @@
                     <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 blur-2xl opacity-40"></div>
 
                     <div class="relative rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 p-[3px] shadow-xl shadow-pink-500/20">
-                        <img src="{{ asset('image/profile.jpg') }}"
-                             alt="{{ $profile->name ?? 'Profile' }}"
-                             class="w-full h-full rounded-full object-cover bg-gray-900">
+                        <img src="{{ $profile?->profile_image ? asset('storage/'.$profile->profile_image) : asset('image/profile.jpg') }}"
+     alt="{{ $profile->name ?? 'Profile' }}"
+     class="w-full h-full rounded-full object-cover bg-gray-900">
+
                     </div>
 
                     <!-- floating badge -->
