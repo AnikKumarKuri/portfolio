@@ -21,12 +21,31 @@
             @if($profile->profile_image)
                 <img src="{{ asset('storage/'.$profile->profile_image) }}"
                      class="w-28 h-28 rounded-full object-cover border border-white/10 mb-3">
-            @else
-                <p class="text-xs text-gray-400 mb-3">No image uploaded yet.</p>
             @endif
 
             <input type="file" name="profile_image"
                    class="w-full p-3 rounded-lg bg-white/5 border border-white/10">
+        </div>
+
+        <!-- CV UPLOAD -->
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+            <label class="block text-sm text-gray-300 mb-2">Upload Resume / CV (PDF/DOC)</label>
+
+            @if($profile->cv_link)
+                <a target="_blank"
+                   class="text-indigo-400 underline text-sm"
+                   href="{{ str_starts_with($profile->cv_link,'cv/') ? asset('storage/'.$profile->cv_link) : $profile->cv_link }}">
+                    View Current CV
+                </a>
+            @endif
+
+            <input type="file" name="cv_file"
+                   class="mt-3 w-full p-3 rounded-lg bg-white/5 border border-white/10">
+
+            <p class="text-xs text-gray-500 mt-2">Or use a CV URL below:</p>
+            <input name="cv_link" value="{{ old('cv_link',$profile->cv_link) }}"
+                   class="mt-2 w-full p-3 rounded-lg bg-white/5 border border-white/10"
+                   placeholder="https://drive.google.com/...">
         </div>
 
         <div>
@@ -42,7 +61,7 @@
         </div>
 
         <div>
-            <label class="block text-sm text-gray-300 mb-1">Subtitle (Hero short line)</label>
+            <label class="block text-sm text-gray-300 mb-1">Subtitle</label>
             <input name="subtitle" value="{{ old('subtitle',$profile->subtitle) }}"
                    class="w-full p-3 rounded-lg bg-white/5 border border-white/10">
         </div>
@@ -94,12 +113,6 @@
                 <input name="twitter" value="{{ old('twitter',$profile->twitter) }}"
                        class="w-full p-3 rounded-lg bg-white/5 border border-white/10">
             </div>
-        </div>
-
-        <div>
-            <label class="block text-sm text-gray-300 mb-1">CV Link (Google Drive / PDF link)</label>
-            <input name="cv_link" value="{{ old('cv_link',$profile->cv_link) }}"
-                   class="w-full p-3 rounded-lg bg-white/5 border border-white/10">
         </div>
 
         <button class="px-6 py-3 bg-indigo-500 rounded-lg hover:bg-indigo-600 font-semibold">
