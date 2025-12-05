@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
-use App\Models\Skill;
 use App\Models\Profile;
+use App\Models\Skill;
+use App\Models\Project;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $projects = Project::latest()->take(6)->get();
-        $skills   = Skill::orderBy('name')->get();
         $profile  = Profile::first();
+        $skills   = Skill::latest()->get();
+        $projects = Project::latest()->get();
 
-        return view('home', compact('projects','skills','profile'));
+        return view('home', compact('profile','skills','projects'));
+    }
+
+    // ✅ New project details page
+    public function projectShow(Project $project)
+    {
+        $profile = Profile::first(); // for navbar title
+        return view('projects.show', compact('project','profile'));
     }
 }

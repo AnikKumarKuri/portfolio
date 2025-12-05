@@ -216,47 +216,49 @@
             </div>
 
             <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @forelse($projects as $project)
-                    <div class="group rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:border-indigo-400/70 hover:-translate-y-1 transition duration-300">
-                        
-                        <!-- image/top -->
-                        <div class="relative h-44 bg-gradient-to-r from-indigo-500 to-pink-500">
-                            @if($project->image)
-                                <img src="{{ asset('storage/'.$project->image) }}"
-                                     class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition" alt="">
-                            @endif
+               @forelse($projects as $project)
+    <a href="{{ route('projects.show', $project->slug) }}"
+       class="group block rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:border-indigo-400/70 hover:-translate-y-1 transition duration-300">
+        
+        <!-- image/top -->
+        <div class="relative h-44 bg-gradient-to-r from-indigo-500 to-pink-500">
+            @if($project->image)
+                <img src="{{ asset('storage/'.$project->image) }}"
+                     class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition" alt="">
+            @endif
 
-                            <div class="absolute inset-0 bg-black/20"></div>
-                        </div>
+            <div class="absolute inset-0 bg-black/20"></div>
+        </div>
 
-                        <!-- body -->
-                        <div class="p-5">
-                            <h3 class="font-bold text-xl">{{ $project->title }}</h3>
-                            <p class="text-gray-400 mt-2 line-clamp-3">
-                                {{ $project->description }}
-                            </p>
+        <!-- body -->
+        <div class="p-5">
+            <h3 class="font-bold text-xl">{{ $project->title }}</h3>
+            <p class="text-gray-400 mt-2 line-clamp-3">
+                {{ $project->description }}
+            </p>
 
-                            <div class="mt-4 flex gap-3 text-sm">
-                                @if($project->live_link)
-                                    <a target="_blank"
-                                       class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-pink-400 hover:bg-white/10 transition"
-                                       href="{{ $project->live_link }}">
-                                        Live Demo
-                                    </a>
-                                @endif
-                                @if($project->github_link)
-                                    <a target="_blank"
-                                       class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-indigo-400 hover:bg-white/10 transition"
-                                       href="{{ $project->github_link }}">
-                                        GitHub
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <p class="text-gray-400">No projects added yet.</p>
-                @endforelse
+            <div class="mt-4 flex gap-3 text-sm">
+                @if($project->live_link)
+                    <span class="px-3 py-2 rounded-lg bg-white/5 border border-white/10">
+                        Live Demo
+                    </span>
+                @endif
+                @if($project->github_link)
+                    <span class="px-3 py-2 rounded-lg bg-white/5 border border-white/10">
+                        GitHub
+                    </span>
+                @endif
+            </div>
+
+            <p class="mt-4 text-indigo-300 text-sm font-semibold">
+                View Details →
+            </p>
+        </div>
+    </a>
+@empty
+    <p class="text-gray-400">No projects added yet.</p>
+@endforelse
+
             </div>
         </div>
 
