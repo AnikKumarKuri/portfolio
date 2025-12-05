@@ -2,22 +2,20 @@
 
 @section('content')
 <section class="min-h-screen bg-[#05060f] text-white">
-    <!-- Navbar spacing -->
     <div class="max-w-6xl mx-auto px-4 pt-16 pb-10">
 
         <!-- HERO -->
         <div class="grid md:grid-cols-2 gap-10 items-center">
-            <!-- Left -->
             <div>
                 <p class="text-sm text-indigo-300 mb-2">Hi, I'm</p>
 
                 <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">
-                    Anik Kumar <br>
-                    <span class="text-indigo-400">Laravel Developer</span>
+                    {{ $profile->name ?? 'Anik Kumar' }} <br>
+                    <span class="text-indigo-400">{{ $profile->title ?? 'Laravel Developer' }}</span>
                 </h1>
 
                 <p class="text-gray-300 mt-4 max-w-lg">
-                    I build fast, modern web apps with Laravel, MySQL, and clean UI.
+                    {{ $profile->subtitle ?? 'I build fast, modern web apps with Laravel, MySQL, and clean UI.' }}
                 </p>
 
                 <div class="mt-6 flex gap-3">
@@ -30,14 +28,29 @@
                        class="px-6 py-3 rounded-xl border border-white/20 hover:border-indigo-400 font-semibold transition">
                         Contact Me
                     </a>
+
+                    @if(!empty($profile?->cv_link))
+                        <a href="{{ $profile->cv_link }}" target="_blank"
+                           class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-400 font-semibold transition">
+                            Download CV
+                        </a>
+                    @endif
+                </div>
+
+                <!-- Socials -->
+                <div class="mt-4 flex gap-4 text-sm text-gray-400">
+                    @if($profile?->github) <a href="{{ $profile->github }}" target="_blank" class="hover:text-white">GitHub</a> @endif
+                    @if($profile?->linkedin) <a href="{{ $profile->linkedin }}" target="_blank" class="hover:text-white">LinkedIn</a> @endif
+                    @if($profile?->facebook) <a href="{{ $profile->facebook }}" target="_blank" class="hover:text-white">Facebook</a> @endif
+                    @if($profile?->twitter) <a href="{{ $profile->twitter }}" target="_blank" class="hover:text-white">Twitter</a> @endif
                 </div>
             </div>
 
-            <!-- Right (Profile Image Circle) -->
+            <!-- Profile Image -->
             <div class="flex justify-center md:justify-end">
                 <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 p-1">
                     <img src="{{ asset('image/profile.jpg') }}"
-                         alt="Anik Kumar"
+                         alt="{{ $profile->name ?? 'Profile' }}"
                          class="w-full h-full rounded-full object-cover bg-gray-900">
                 </div>
             </div>
@@ -47,8 +60,7 @@
         <div id="about" class="mt-20">
             <h2 class="text-3xl font-bold mb-4">About Me</h2>
             <p class="text-gray-300 leading-relaxed max-w-3xl">
-                I'm a backend-focused Laravel developer who loves turning ideas into solid products.
-                I work with Laravel, REST APIs, authentication systems, and responsive UI.
+                {{ $profile->about ?? "I'm a backend-focused Laravel developer who loves turning ideas into solid products. I work with Laravel, REST APIs, authentication systems, and responsive UI." }}
             </p>
         </div>
 
@@ -95,14 +107,12 @@
 
                             <div class="mt-4 flex gap-3 text-sm">
                                 @if($project->live_link)
-                                    <a target="_blank" class="text-indigo-400 hover:underline" href="{{ $project->live_link }}">
-                                        Live Demo
-                                    </a>
+                                    <a target="_blank" class="text-indigo-400 hover:underline"
+                                       href="{{ $project->live_link }}">Live Demo</a>
                                 @endif
                                 @if($project->github_link)
-                                    <a target="_blank" class="text-indigo-400 hover:underline" href="{{ $project->github_link }}">
-                                        GitHub
-                                    </a>
+                                    <a target="_blank" class="text-indigo-400 hover:underline"
+                                       href="{{ $project->github_link }}">GitHub</a>
                                 @endif
                             </div>
                         </div>
@@ -113,7 +123,7 @@
             </div>
         </div>
 
-        <!-- CONTACT -->
+        <!-- CONTACT (still static for now) -->
         <div id="contact" class="mt-20">
             <h2 class="text-3xl font-bold mb-6">Contact Me</h2>
 
@@ -132,9 +142,8 @@
             </form>
         </div>
 
-        <!-- FOOTER -->
         <footer class="mt-20 pt-10 border-t border-white/10 text-gray-400 text-sm">
-            © {{ date('Y') }} Anik Kumar — Built with Laravel
+            © {{ date('Y') }} {{ $profile->name ?? 'Anik Kumar' }} — Built with Laravel
         </footer>
 
     </div>
