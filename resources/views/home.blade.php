@@ -18,7 +18,7 @@
                     {{ $profile->subtitle ?? 'I build fast, modern web apps with Laravel, MySQL, and clean UI.' }}
                 </p>
 
-                <div class="mt-6 flex gap-3">
+                <div class="mt-6 flex gap-3 flex-wrap">
                     <a href="#projects"
                        class="px-6 py-3 rounded-xl bg-indigo-500 hover:bg-indigo-600 font-semibold transition">
                         View Projects
@@ -123,17 +123,29 @@
             </div>
         </div>
 
-        <!-- CONTACT (still static for now) -->
+        <!-- CONTACT (dynamic backend) -->
         <div id="contact" class="mt-20">
             <h2 class="text-3xl font-bold mb-6">Contact Me</h2>
 
-            <form class="max-w-2xl space-y-4">
-                <input type="text" placeholder="Your Name"
+            @if(session('success'))
+                <div class="mb-4 p-3 rounded bg-green-500/20 text-green-300 border border-green-500/30">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <form action="{{ route('contact.store') }}" method="POST" class="max-w-2xl space-y-4">
+                @csrf
+
+                <input type="text" name="name" placeholder="Your Name"
+                       value="{{ old('name') }}"
                        class="w-full p-3 rounded-lg bg-white/5 border border-white/10">
-                <input type="email" placeholder="Your Email"
+
+                <input type="email" name="email" placeholder="Your Email"
+                       value="{{ old('email') }}"
                        class="w-full p-3 rounded-lg bg-white/5 border border-white/10">
-                <textarea rows="5" placeholder="Your Message"
-                          class="w-full p-3 rounded-lg bg-white/5 border border-white/10"></textarea>
+
+                <textarea rows="5" name="message" placeholder="Your Message"
+                          class="w-full p-3 rounded-lg bg-white/5 border border-white/10">{{ old('message') }}</textarea>
 
                 <button type="submit"
                         class="px-6 py-3 bg-indigo-500 rounded-lg hover:bg-indigo-600 font-semibold">
